@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "TenantPublicProfile": {
+      "title": "Tenant Public Profile",
+      "description": "Public metadata for an educational institution tenant registered on ASKARA.",
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "description": "Unique tenant identifier",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Institution name",
+          "maxLength": 200
+        },
+        "institutionType": {
+          "type": "string",
+          "enum": ["Sekolah Mandiri", "Gugus Sekolah", "KKG", "Lembaga Pendidikan"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "approved", "suspended", "rejected"]
+        }
+      },
+      "required": ["tenantId", "name", "institutionType", "status"]
+    },
+    "UserAccountMeta": {
+      "title": "User Account Meta",
+      "description": "Authenticated user role and tenant binding metadata.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "tenantId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["super_admin", "tenant_admin", "teacher"]
+        }
+      },
+      "required": ["uid", "tenantId", "role"]
+    },
+    "SystemHealthDoc": {
+      "title": "System Health Document",
+      "description": "Public read-only connectivity check document.",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "maxLength": 32 }
+      },
+      "required": ["status"]
+    }
+  },
+  "firestore": {
+    "/test/connection": {
+      "schema": "SystemHealthDoc",
+      "description": "Connectivity verification document."
+    },
+    "/tenants/{tenantId}": {
+      "schema": "TenantPublicProfile",
+      "description": "Tenant directory entry."
+    },
+    "/users/{userId}": {
+      "schema": "UserAccountMeta",
+      "description": "Private user tenant/role binding."
+    }
+  }
+}

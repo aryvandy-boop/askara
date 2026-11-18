@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+uploads/
+data/*.sqlite-wal
+data/*.sqlite-shm
+data/*.sqlite-journal
+public/assets/aistudio/SOAL_SAS_KELAS_6__PKNpdf_d829bd1b.pdf
+public/assets/aistudio/image_*.png

@@ -1,0 +1,6 @@
+{
+  "name": "ASKARA — Sistem Asesmen Pendidikan AI",
+  "description": "Platform multi-tenant pembuatan perangkat asesmen pendidikan berbasis AI untuk guru, sekolah, KKG, dan gugus sekolah (ASKARA 04 – Gugus 04 Arjasa).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
